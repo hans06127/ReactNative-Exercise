@@ -21,7 +21,7 @@ export default function HomeScreen(props) {
    * 3 time(上班)
    * 4 time(下班)
    */
-  const NowBasicStyle = useMappedState(state => state.basicStyle)
+  const nowBasicStyle = useMappedState(state => state.basicStyle)
   const userInformation = useMappedState(state => state.userInformation)
   const [changeVisible, setChangeVisible] = useState(false);
   const [loadingVisible, setLoadingVisible] = useState(false)
@@ -152,24 +152,24 @@ export default function HomeScreen(props) {
       <TouchableHighlight underlayColor={"#ABABAB"} onPress={() => changeSignIn(cases)} style={{ height: 100, alignItems: 'center', justifyContent: 'center' }}>
         <View style={{ height: 90, borderWidth: 2, borderRadius: 10, borderColor: isErrorRecord(cases[3], cases[4]), flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <View style={[{ width: "30%", justifyContent: 'center', alignItems: 'center' }]}>
-            <Text style={{ fontSize: 20, margin: 5, color: NowBasicStyle.fontColor }}>{strToDate('date', cases[3] ? cases[3] : cases[4])}</Text>
-            <Text style={{ fontSize: 20, color: NowBasicStyle.fontColor }}>{strToDate('day', cases[3] ? cases[3] : cases[4])}</Text>
+            <Text style={{ fontSize: 20, margin: 5, color: nowBasicStyle.fontColor }}>{strToDate('date', cases[3] ? cases[3] : cases[4])}</Text>
+            <Text style={{ fontSize: 20, color: nowBasicStyle.fontColor }}>{strToDate('day', cases[3] ? cases[3] : cases[4])}</Text>
           </View>
           <View style={[{ width: "30%", alignItems: 'center' }]}>
             <Text style={{ margin: 10, fontSize: 22, color: '#3781BF' }}>簽到</Text>
-            <Text style={{ fontSize: 22, color: NowBasicStyle.fontColor }}>{strToDate('time', cases[3])}</Text>
+            <Text style={{ fontSize: 22, color: nowBasicStyle.fontColor }}>{strToDate('time', cases[3])}</Text>
           </View>
           <View style={[{ width: "30%", alignItems: 'center' }]}>
-            <Text style={{ margin: 10, fontSize: 22, color: NowBasicStyle.fontColor }}>簽退</Text>
-            <Text style={{ fontSize: 22, color: NowBasicStyle.fontColor }}>{strToDate('time', cases[4])}</Text>
+            <Text style={{ margin: 10, fontSize: 22, color: nowBasicStyle.fontColor }}>簽退</Text>
+            <Text style={{ fontSize: 22, color: nowBasicStyle.fontColor }}>{strToDate('time', cases[4])}</Text>
           </View>
         </View>
       </TouchableHighlight >)
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: NowBasicStyle.backgroundColor }]}>
-      <Text>最近30次打卡</Text>
+    <View style={[styles.container, { backgroundColor: nowBasicStyle.backgroundColor }]}>
+      <Text style={{ color: nowBasicStyle.fontColor }}>最近30次打卡</Text>
       {/* loading畫面 */}
       <Modal
         animationType='slide'

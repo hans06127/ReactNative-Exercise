@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Alert } from 'react-n
 import DateTime from './ShowDateTime'
 
 // for redux
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useMappedState } from 'redux-react-hook';
 
 // for post
 import { fetchData } from '../../api/postUserData';
@@ -12,11 +12,9 @@ import { fetchData } from '../../api/postUserData';
 import { strToDate } from '../../api/strToDate';
 
 export default function HomeScreen(props) {
-  const NowBasicStyle = useMappedState(state => state.basicStyle)
+  const nowBasicStyle = useMappedState(state => state.basicStyle)
   const userInformation = useMappedState(state => state.userInformation)
   const [todayRecord, setTodayRecord] = useState(userInformation.todayRecord)
-  const disPatch = useDispatch()
-
 
   const setRecord = async (_setData) => {
     let fetchJson = {
@@ -45,7 +43,7 @@ export default function HomeScreen(props) {
     }
 
     fetchData(fetchJson).then(response => {
-      let last = response.punchInRecord.slice(-1)
+      let last = response.punchInRecord.slice(-1)[0]
       setTodayRecord(last)
     }).catch(err => {
       console.log(err)
@@ -53,7 +51,7 @@ export default function HomeScreen(props) {
   }
   const punchIn = (_action, _time) => {
     let account = userInformation.user.account
-    let loginCode = "987:654:ABC"
+    let loginCode = "123:456:789"
     var punchInData = [account, loginCode, _time, _action]
     // 判斷是否今天有打卡紀錄
     if (todayRecord) {
@@ -116,10 +114,10 @@ export default function HomeScreen(props) {
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: NowBasicStyle.backgroundColor }]}>
-      <Text style={{ fontSize: 25, color: NowBasicStyle.fontColor, }}>Hi {userInformation.user.name}</Text>
+    <View style={[styles.container, { backgroundColor: nowBasicStyle.backgroundColor }]}>
+      <Text style={{ fontSize: 25, color: nowBasicStyle.fontColor, }}>Hi {userInformation.user.name}</Text>
       <View style={styles.timeBorder}>
-        <DateTime isChange={false} value={[NowBasicStyle.fontColor, NowBasicStyle.backgroundColor]} >
+        <DateTime isChange={false} value={[nowBasicStyle.fontColor, nowBasicStyle.backgroundColor]} >
         </DateTime>
       </View>
       <TouchableOpacity style={styles.buttonBorder} onPress={() => showPunchAlert()}>

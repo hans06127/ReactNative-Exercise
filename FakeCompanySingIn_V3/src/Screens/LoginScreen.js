@@ -60,10 +60,13 @@ export default function LoginScreen(props) {
 
   return (
     <View style={[{ backgroundColor: nowBasicStyle.backgroundColor }, styles.container]}>
-      <Image
+      {/* <Image
         style={styles.Home_Loge}
         source={{ uri: ('https://www.ghibli.jp/gallery/nausicaa001.jpg') }}
-      ></Image>
+      ></Image> */}
+      <View style={[styles.Home_Logo, { backgroundColor: nowBasicStyle.backgroundColor, borderWidth: 1, alignItems: 'center', justifyContent: 'center' }]}>
+        <Text style={{ color: nowBasicStyle.fontColor, fontSize: 34 }}>歡迎來到打卡系統</Text>
+      </View>
       <Text style={[styles.loginText, { color: 'red' }]}>{loginText}</Text>
       <TextInput
         style={styles.Home_Account_Input}
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
 
   },
-  Home_Loge: {
+  Home_Logo: {
     width: '70%',
     height: '15%',
     borderColor: 'black',
